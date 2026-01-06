@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Repeater Pro</title>
+
+<style>
+*{box-sizing:border-box;font-family: 'Poppins', sans-serif;}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.card{
+    width:92%;
+    max-width:420px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+    color:#fff;
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+h1{
+    text-align:center;
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    margin-top:10px;
+    font-size:15px;
+}
+
+textarea{resize:none}
+
+.btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    color:#fff;
+    background:linear-gradient(135deg,#ff512f,#dd2476);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.btn:active{
+    transform:scale(0.95);
+}
+
+.copy{
+    background:linear-gradient(135deg,#00c6ff,#0072ff);
+}
+
+.footer{
+    text-align:center;
+    font-size:12px;
+    opacity:0.8;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🔁 Text Repeater Pro</h1>
+
+    <input type="text" id="text" placeholder="Enter your word">
+
+    <input type="number" id="count" placeholder="Repeat count (e.g. 100)" value="100">
+
+    <button class="btn" onclick="repeatText()">Generate</button>
+
+    <textarea id="output" rows="5" placeholder="Result will appear here"></textarea>
+
+    <button class="btn copy" onclick="copyText()">Copy Text</button>
+
+    <div class="footer">Made by Rohit 🚀</div>
+</div>
+
+<script>
+function repeatText(){
+    let text = document.getElementById("text").value.trim();
+    let count = document.getElementById("count").value;
+    let result = "";
+
+    if(text === ""){
+        alert("Please enter a word");
+        return;
+    }
+
+    for(let i=0;i<count;i++){
+        result += text + (i < count-1 ? " " : "");
+    }
+
+    document.getElementById("output").value = result;
+}
+
+function copyText(){
+    let out = document.getElementById("output");
+    out.select();
+    document.execCommand("copy");
+    alert("Copied Successfully!");
+}
+</script>
+
+</body>
+</html>
